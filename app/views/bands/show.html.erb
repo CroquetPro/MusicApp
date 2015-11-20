@@ -1,16 +1,16 @@
+<a href="<%= bands_url %>">All Bands</a>
+
 <h1> <%= @band.name %> </h1>
 <a href="<%= edit_band_url(@band) %>">Edit Band</a>
 <%= button_to "Delete Band", band_url(@band), method: "delete" %>
-
-<% @band.albums.each do |album| %>
-  <a href="album_url(<%= album %>)"><h2><%= album.name %></h2></a>
-  <ul>
-    <li> <%= album.tracks.each do |track| %> </li>
-          <ol>
-            <li> <a href="track_url(<%= track %>)"><%= track.title %></a> </li>
-          </ol><br>
-      <% end %>
-  </ul>
+<ul>
+  <% @band.albums.each do |album| %>
+    <a href="<%=album_url(album)%>"><h2><%= album.name %></h2></a>
+    <ul> <% album.tracks.each do |track| %>
+              <li> <a href="<%= track_url(track) %>"><%= track.title %></a> </li>
+            <br>
+        <% end %>
+    </ul> <br>
   <% end %>
-
-  <a href="<%= new_album_url %>">New Album</a>
+</ul>
+  <a href="<%= new_band_album_url(@band) %>">New Album</a>

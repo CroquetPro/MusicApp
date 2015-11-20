@@ -1,0 +1,12 @@
+<a href="<%= band_url(@album.band_id) %>">Back to the Band</a>
+
+<h1> <%= @album.name %> </h1>
+<a href="<%= edit_album_url(@album) %>">Edit Album</a>
+<%= button_to "Delete album", album_url(@album), method: "delete" %>
+
+<ul>
+<% @album.tracks.each do |track| %>
+  <li><a href="<%= track_url(track) %>"><h3><%= track.title %></h3></a> </li>
+<% end %>
+</ul>
+  <a href="<%= new_album_track_url(@album) %>">New Track</a>

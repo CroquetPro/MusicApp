@@ -2,14 +2,14 @@ class AlbumsController < ApplicationController
   before_action :require_current_user!
 
   def new
-    @album = Album.new
+    @album = Album.new(band_id: params[:band_id])
   end
 
   def create
     @album = Album.new(album_params)
 
     if @album.save
-      flash[:notice] << "Successfully added album #{@album.name}!"
+      flash[:notice] = ["Successfully added album #{@album.name}!"]
       redirect_to album_url(@album)
     else
       flash.now[:errors] = @album.errors.full_messages
@@ -24,6 +24,7 @@ class AlbumsController < ApplicationController
   end
 
   def show
+    @album = Album.find(params[:id])
   end
 
   def destroy
@@ -32,7 +33,7 @@ class AlbumsController < ApplicationController
   private
 
   def album_params
-    params.require(:user).permit(:name, :band_id, :atype)
+    params.require(:album).permit(:name, :band_id, :atype)
   end
 
 end

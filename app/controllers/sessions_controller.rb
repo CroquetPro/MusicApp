@@ -6,11 +6,12 @@ class SessionsController < ApplicationController
       params[:user][:password])
 
     if user.nil?
+      @user = User.new(email: params[:user][:email])
       flash.now[:errors] = ["Incorrect Email or password."]
       render :new
     else
       login!(user)
-      redirect_to user_url(user)
+      redirect_to bands_url
     end
   end
 

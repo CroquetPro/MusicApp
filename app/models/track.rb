@@ -15,14 +15,14 @@ class Track < ActiveRecord::Base
   TRACK_TYPE = %w(Regular Bonus)
 
   validates :title, :album_id, presence: true
-  validates :ttype, presence: true, inclusion: { in TRACK_TYPE }
+  validates :ttype, presence: true, inclusion: { in: TRACK_TYPE }
 
   belongs_to :album,
     foreign_key: :album_id,
     primary_key: :id,
     class_name: "Album"
 
-  belongs_to :band,
+  has_one :band,
     through: :album,
     source: :band
 
