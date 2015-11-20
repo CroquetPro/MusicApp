@@ -20,6 +20,11 @@ class User < ActiveRecord::Base
 
   after_initialize :ensure_session_token
 
+  has_many :notes,
+    foreign_key: :user_id,
+    primary_key: :id,
+    class_name: "Note"
+  
   def password=(password)
     @password = password
     self.password_digest = BCrypt::Password.create(password)

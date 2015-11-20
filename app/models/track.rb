@@ -26,4 +26,10 @@ class Track < ActiveRecord::Base
     through: :album,
     source: :band
 
+  has_many :notes,
+    dependent: :destroy,
+    foreign_key: :track_id,
+    primary_key: :id,
+    class_name: "Note"
+
 end
