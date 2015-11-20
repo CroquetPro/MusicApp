@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: band
+# Table name: bands
 #
 #  id         :integer          not null, primary key
 #  name       :string           not null
