@@ -18,9 +18,18 @@ class BandsController < ApplicationController
   end
 
   def edit
+    @band = Band.find(params[:id])
   end
 
-  def updated
+  def update
+    @band = Band.update(params[:id], band_params)
+    if @band.save!
+      flash[:notice] = ["Successfully updated band #{@band.name}!"]
+      redirect_to band_url(@band)
+    else
+      flash.now[:errors] = @band.errors.full_messages
+      render :edit
+    end
   end
 
   def index

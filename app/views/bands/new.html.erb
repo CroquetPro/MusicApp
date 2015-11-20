@@ -1,13 +1,5 @@
 <h1>Band Registration</h1>
-<form action="<%= bands_url %>" method="post">
-  <%= auth_token %>
 
-  <label for="Name">Name</label>
-  <input
-     id="name"
-     name="[band][name]"
-     type="text">
-  <br>
-  <br>
-  <input type="submit" value="Register">
-</form>
+<%= render "form", url: "bands_url",
+                    method: "post",
+                    action: "Add Band" %>

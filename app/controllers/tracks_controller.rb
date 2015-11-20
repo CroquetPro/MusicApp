@@ -18,9 +18,18 @@ class TracksController < ApplicationController
   end
 
   def edit
+    @track = Track.find(params[:id])
   end
 
-  def updated
+  def update
+    @track = Track.update(params[:id], track_params)
+    if @track.save!
+      flash[:notice] = ["Successfully updated track #{@track.title}!"]
+      redirect_to track_url(@track)
+    else
+      flash.now[:errors] = @track.errors.full_messages
+      render :edit
+    end
   end
 
   def show

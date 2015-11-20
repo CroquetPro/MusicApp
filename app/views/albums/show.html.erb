@@ -1,6 +1,7 @@
 <a href="<%= band_url(@album.band_id) %>">Back to the Band</a>
 
-<h1> <%= @album.name %> </h1>
+<h1><%= @album.name %></h1>
+<h3><%= @album.atype %> Album by <%= @album.band.name %></h3>
 <a href="<%= edit_album_url(@album) %>">Edit Album</a>
 <%= button_to "Delete album", album_url(@album), method: "delete" %>
 

@@ -1,0 +1,34 @@
+<form action="<%= url %>" method="post">
+    <input type="hidden" name="_method" value="<%= method %>">
+
+  <%= auth_token %>
+
+  <label for="Name">Name</label>
+  <input
+     id="name"
+     name="[album][name]"
+     type="text"
+     value="<%= album.name %>"
+     placeholder="Album Name">
+  <br>
+  <br>
+  <label for="Band">Band</label>
+  <select name="[album][band_id]">
+    <option></option>
+    <% Band.all.each do |band| %>
+    <option value="<%= band.id %>"
+      <%= "selected" if album.band_id == band.id %>
+      ><%= band.name %></option>
+    <% end %>
+  </select>
+
+  <br>
+  <br>
+  Studio <input type="radio" name="[album][atype]"
+        value="Studio" <%= "checked" if album.atype == "Studio" %>>
+  Live <input type="radio" name="[album][atype]"
+        value="Live" <%= "checked" if album.atype == "Live" %>>
+  <br>
+  <br>
+  <input type="submit" value="<%= action %>">
+</form>
